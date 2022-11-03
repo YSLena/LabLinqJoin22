@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Logging; // логирование
+using System.IO;
 
 #nullable disable
 
@@ -25,12 +27,27 @@ namespace LabLinqJoin22.Models
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Tutor> Tutors { get; set; }
 
+        // файл для логирования
+        private readonly StreamWriter _logStream = new StreamWriter(@"D:\TEMP\DB\log.txt", append: false);
+
+        // освободить файл перед уничтожением контекста, иначе логирование будет неполным
+        public override void Dispose()
+        {
+            base.Dispose();
+            _logStream.Dispose();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Data Source=magister-v;Initial Catalog=Faculty_UA_22;Integrated Security=True");
+
+                optionsBuilder
+                    .LogTo(_logStream.WriteLine, LogLevel.Trace) // в файл
+                    .EnableSensitiveDataLogging(); // включать данные
+
             }
         }
 
