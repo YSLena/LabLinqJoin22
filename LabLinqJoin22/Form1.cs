@@ -33,10 +33,10 @@ namespace LabLinqJoin22
                 tabControl.SelectedTab = tabControl.TabPages["tabQuery1"];
             label1.Text = dataGridView1.RowCount.ToString();
 
-            dataGridView2.DataSource = dataAcc.Query2();
-            if (dataGridView2.RowCount > 0)
-                tabControl.SelectedTab = tabControl.TabPages["tabQuery2"];
-            label2.Text = dataGridView2.RowCount.ToString();
+            //dataGridView2.DataSource = dataAcc.Query2();
+            //if (dataGridView2.RowCount > 0)
+            //    tabControl.SelectedTab = tabControl.TabPages["tabQuery2"];
+            //label2.Text = dataGridView2.RowCount.ToString();
 
             dataGridView3.DataSource = dataAcc.Query3();
             if (dataGridView3.RowCount > 0)

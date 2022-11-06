@@ -110,28 +110,28 @@ namespace LabLinqJoin22
         public object Query1()
         {
             return
-                context.Students.Take(1).ToList();
+                null;
         }//Query1()
 
         // Query2() пропускаем, чтобы сохранить нумерацию заданий
 
-        public object Query2()
-        {
-            return
-                null;
-        }//Query2()
+        //public object Query2()
+        //{
+        //    return
+        //        null;
+        //}//Query2()
 
 
         public object Query3()
         {
             return
-                context.Students.Take(3).ToList();
+                null;
         }//Query3()
 
         public object Query4()
         {
             return
-                context.Students.Take(4).ToList();
+                null;
         }//Query4()
 
         /* TODO 5.1 Пример группировки с подсчётом агрегатных функций
@@ -165,7 +165,7 @@ namespace LabLinqJoin22
         public object Query5()
         {
             return
-                context.Students.Take(5).ToList();
+                null;
         }//Query5
 
         /* TODO 6.1 Приклад угруповання з виконанням розрахунків за пов'язаними даними в підзапиті
@@ -215,7 +215,7 @@ namespace LabLinqJoin22
         public object Query6()
         {
             return
-                context.Students.Take(6).ToList();
+                null;
         }//Query6()
 
 
@@ -312,7 +312,7 @@ namespace LabLinqJoin22
         public object Query8()
         {
             return
-                context.Students.Take(8).ToList();
+                null;
         }//Query8()
 
 

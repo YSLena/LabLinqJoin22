@@ -35,9 +35,6 @@
             this.tabQuery1 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.tabQuery2 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabQuery3 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
@@ -71,8 +68,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1Example)).BeginInit();
             this.tabQuery1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.tabQuery2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabQuery3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabQuery4.SuspendLayout();
@@ -109,7 +104,6 @@
             // 
             this.tabControl.Controls.Add(this.tabQuery1Ex);
             this.tabControl.Controls.Add(this.tabQuery1);
-            this.tabControl.Controls.Add(this.tabQuery2);
             this.tabControl.Controls.Add(this.tabQuery3);
             this.tabControl.Controls.Add(this.tabQuery4);
             this.tabControl.Controls.Add(this.tabTask5);
@@ -188,39 +182,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1068, 649);
             this.dataGridView1.TabIndex = 2;
-            // 
-            // tabQuery2
-            // 
-            this.tabQuery2.Controls.Add(this.label2);
-            this.tabQuery2.Controls.Add(this.dataGridView2);
-            this.tabQuery2.Location = new System.Drawing.Point(4, 24);
-            this.tabQuery2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabQuery2.Name = "tabQuery2";
-            this.tabQuery2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabQuery2.Size = new System.Drawing.Size(1076, 655);
-            this.tabQuery2.TabIndex = 2;
-            this.tabQuery2.Text = "Query 2";
-            this.tabQuery2.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1016, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "label2";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(4, 3);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(1068, 649);
-            this.dataGridView2.TabIndex = 0;
             // 
             // tabQuery3
             // 
@@ -577,9 +538,6 @@
             this.tabQuery1.ResumeLayout(false);
             this.tabQuery1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.tabQuery2.ResumeLayout(false);
-            this.tabQuery2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabQuery3.ResumeLayout(false);
             this.tabQuery3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
@@ -630,8 +588,6 @@
         private System.Windows.Forms.TabPage tabQuery1Ex;
         private System.Windows.Forms.TabPage tabQuery1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TabPage tabQuery2;
-        private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.TabPage tabQuery3;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.TabPage tabTask6;
@@ -648,7 +604,6 @@
         private System.Windows.Forms.DataGridView dataGridViewAggr;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5ex;
