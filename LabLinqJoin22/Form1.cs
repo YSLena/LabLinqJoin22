@@ -28,6 +28,7 @@ namespace LabLinqJoin22
             label1ex.Text = dataGridView1Example.RowCount.ToString();
 
             dataGridView1.DataSource = dataAcc.Query1();
+            dataGridView1.Refresh();
             if (dataGridView1.RowCount > 0)
                 tabControl.SelectedTab = tabControl.TabPages["tabQuery1"];
             label1.Text = dataGridView1.RowCount.ToString();
@@ -48,7 +49,7 @@ namespace LabLinqJoin22
                 tabControl.SelectedTab = tabControl.TabPages["tabQuery4"];
             label4.Text = dataGridView4.RowCount.ToString();
 
-            IOrderedEnumerable<IGrouping<string, Models.Tutor>> groupsEx = dataAcc.Task5Example();
+            IOrderedEnumerable<IGrouping<string, Models.Tutor>> groupsEx = dataAcc.Query7Example();
             if (groupsEx != null)
             {
                 foreach (var gr in groupsEx)
@@ -61,7 +62,7 @@ namespace LabLinqJoin22
                 }
             }
 
-            IOrderedEnumerable<IGrouping<string, Models.Student>> groupsSt = dataAcc.Task5();
+            IOrderedEnumerable<IGrouping<string, Models.Student>> groupsSt = dataAcc.Query7();
             if (groupsSt != null)
             {
                 foreach (var gr in groupsSt)
@@ -78,29 +79,36 @@ namespace LabLinqJoin22
             }
 
             if (textBoxGroup.Text.Length > 0)
-                tabControl.SelectedTab = tabControl.TabPages["tabTask5"];
-
-            object Task6DataEx = dataAcc.Task6Example();
-            dataGridViewAggrExample.DataSource = Task6DataEx;
-            dataGridViewAggrExample.Refresh();
-            label6ex.Text = dataGridViewAggrExample.RowCount.ToString();
-
-            object Task6Data = dataAcc.Task6();
-            dataGridViewAggr.DataSource = Task6Data;
-            if (dataGridViewAggr.RowCount > 0)
-                tabControl.SelectedTab = tabControl.TabPages["tabTask6"];
-            label6.Text = dataGridViewAggr.RowCount.ToString();
-
-            object Task7DataEx = dataAcc.Task7Example();
-            dataGridView7Example.DataSource = Task7DataEx;
-            dataGridView7Example.Refresh();
-            label7ex.Text = dataGridView7Example.RowCount.ToString();
-
-            object Task7Data = dataAcc.Task7();
-            dataGridView7.DataSource = Task7Data;
-            if (dataGridView7.RowCount > 0)
                 tabControl.SelectedTab = tabControl.TabPages["tabTask7"];
-            label7.Text = dataGridView7.RowCount.ToString();
+
+            object Task5DataEx = dataAcc.Query5Example();
+            dataGridViewAggrExample.DataSource = Task5DataEx;
+            dataGridViewAggrExample.Refresh();
+            label5ex.Text = dataGridViewAggrExample.RowCount.ToString();
+
+            object Task5Data = dataAcc.Query5();
+            dataGridViewAggr.DataSource = Task5Data;
+            if (dataGridViewAggr.RowCount > 0)
+                tabControl.SelectedTab = tabControl.TabPages["tabTask5"];
+            label5.Text = dataGridViewAggr.RowCount.ToString();
+
+            dataGridView6Example.DataSource = dataAcc.Query6Example(); 
+            dataGridView6Example.Refresh();
+            label6ex.Text = dataGridView6Example.RowCount.ToString();
+
+            dataGridView6.DataSource = dataAcc.Query6(); 
+            if (dataGridView6.RowCount > 0)
+                tabControl.SelectedTab = tabControl.TabPages["tabTask6"];
+            label6.Text = dataGridView6.RowCount.ToString();
+
+            dataGridView8Example.DataSource = dataAcc.Query8Example();
+            dataGridView8Example.Refresh();
+            label8ex.Text = dataGridView8Example.RowCount.ToString();
+
+            dataGridView8.DataSource = dataAcc.Query8();
+            if (dataGridView8.RowCount > 0)
+                tabControl.SelectedTab = tabControl.TabPages["tabTask8"];
+            label8.Text = dataGridView8.RowCount.ToString();
         }
     }
 }

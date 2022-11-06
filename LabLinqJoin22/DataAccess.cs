@@ -38,13 +38,21 @@ namespace LabLinqJoin22
 
         }//DataAccess()
 
-        /* TODO:
+        /* TODO 0
           * Виправити шлях до файлу БД у рядку з'єднання в контексті даних (Models.LabLinqJoin22.cs)
           * Якщо є проблеми з БД - перезавантажити чи перестворити її
           * Виконувати завдання у цьому файлі у відповідності з варіантом         */
 
 
-        /* Приклад звернення до кількох сутностей в одному запиті.
+        /* TODO 1 - 4 
+         * 
+         * Для виконання з'єднань даних з кількох сутностей (таблиць) в LINQ може використовуватись 
+         * як оператор join, так і навігаційні свойства.
+         * Див. документацію:
+         * https://learn.microsoft.com/ru-ru/dotnet/csharp/linq/perform-inner-joins
+         * 
+         * 
+         * Приклад звернення до кількох сутностей в одному запиті.
         * Запит звертається до пов'язаних сутностей Tutors та Chairs,
         * але в інструкції від є тільки звернення до Tutors (2).
         * Дані Chairs отримані за допомогою навігаційного свойства
@@ -102,103 +110,36 @@ namespace LabLinqJoin22
         public object Query1()
         {
             return
-                null;
+                context.Students.Take(1).ToList();
         }//Query1()
+
+        // Query2() пропускаем, чтобы сохранить нумерацию заданий
 
         public object Query2()
         {
             return
                 null;
-                //(
-                //from t in context.Tutors
-                //join ch in context.Chairs on t.Chair equals ch into tutOnCh
-                //from tch in tutOnCh.DefaultIfEmpty()
-                //join cur in context.Curricula on t equals cur.Tutor into tutOnCur
-                //from tcur in tutOnCur.DefaultIfEmpty()
-                //join sub in context.Subjects on tcur.Subject equals sub into tutOnSub
-                //from tsub in tutOnSub.DefaultIfEmpty()
-                //orderby t.NameFio descending
-                //select new
-                //{
-                //    FIO = t.NameFio,
-                //    ChairNum = tch.ChairNumber ?? String.Empty,
-                //    Subject = tsub.Name ?? String.Empty
-                //}
-                //).ToList();
         }//Query2()
+
 
         public object Query3()
         {
             return
-                null;
+                context.Students.Take(3).ToList();
         }//Query3()
-
 
         public object Query4()
         {
             return
-                null;
+                context.Students.Take(4).ToList();
         }//Query4()
 
-
-        /* TODO 5.1 Приклад угруповання
-         * 
-        * Запит витягує викладачів, для яких задано посилання на кафедру,
-        * групуючи їх за ПІБ завкафедрою,
-        * група викладачів, завідувачем яких є Соколов, не витягується,
-        * Отримані групи сортуються за ПІБ завкафедрою у зворотному порядку.
-        *
-        * Зверніть увагу, що пов'язані дані треба підвантажувати до угруповання.
-        * Для цього використовуються методи Include() та ThenInclude().
-        *
-        * Зверніть увагу на метод AsEnumerable(), який змушує програму прочитати дані
-        * EF Core виконує угруповання тільки після завантаження даних
-        *
-        * Також зверніть увагу, що інструкція where використовується двічі: до угруповання та після         */
-
-        public IOrderedEnumerable<IGrouping<string, Models.Tutor>> Task5Example()
-        {
-            return
-
-                from tut in context.Tutors.Include(t => t.Chair).ThenInclude(c => c.ChairHead).AsEnumerable() // подгружаем преподов, кафедры и заведующих
-                where tut.Chair != null                             // проверяем наличие ссылки на кафедру, фильтруя исхожные данные
-                group tut by tut.Chair.ChairHead.NameFio into gr    // собственно группировка
-                where !gr.Key.Contains("Соколов")                   // фильтрация после группировки
-                orderby gr.Key descending                           // сортировка групп
-                select gr;
-                
-
-            /*
-             * Это старый пример. Он тоже работает
-             * 
-                from tut in context.Tutors.AsEnumerable()  // AsEnumerable() нужно добавлять, т.к. EF Core не будет группировать данные до их чтения
-                where tut.NameFio.Length <= 12   // фильтрация элементов данных
-                group tut by tut.NameFio.Substring(0, 1) into gr
-                where (gr.Key != "М") && (gr.Key != "Ж")        // фильтрация групп
-                orderby gr.Key descending
-                select gr;
-                
-            */
-        }//Task5Example()
-
-        /* TODO 5.2
-        * Допишіть код методу Task5() для отримання даних відповідно до варіанта
-        * Зверніть увагу, що ключ угруповання має тип string
-        * Якщо у вас за завданням ключ числовий - перетворіть на рядок
-        * Це пов'язано з налаштуванням виведення на форму, насправді припустимо будь-який тип даних
-        */
-        public IOrderedEnumerable<IGrouping<string, Models.Student>> Task5()
-        {
-            return
-                null;
-        }//Task5()
-
-        /* TODO 6.1 Пример группировки с подсчётом агрегатных функций
+        /* TODO 5.1 Пример группировки с подсчётом агрегатных функций
          * Функции Count(), Min(), Max(), Average(), Sum()
          * подсчитываются по каждой группе данных (считается длина фамилий)
         */
 
-        public object Task6Example()
+        public object Query5Example()
         {
             return
                 (
@@ -215,21 +156,24 @@ namespace LabLinqJoin22
                     sumLength = gr.Sum(t => t.NameFio.Length)
                 }
                 ).ToList();
-        }//Task6Example
+        }//Query5Example()
 
-        /* TODO 6.2
+        /* TODO 5.2
         * Напишіть запит із групуванням та підрахунком агрегатних функцій
         * у відповідності з варіантом завдання         */
 
-        public object Task6()
+        public object Query5()
         {
             return
-                null;
-        }//Task6
+                context.Students.Take(5).ToList();
+        }//Query5
 
-        /* TODO 7.1 Приклад угруповання з виконанням розрахунків за пов'язаними даними
+        /* TODO 6.1 Приклад угруповання з виконанням розрахунків за пов'язаними даними в підзапиті
+         * 
+         * https://learn.microsoft.com/ru-ru/dotnet/csharp/linq/perform-a-subquery-on-a-grouping-operation
+         * https://learn.microsoft.com/ru-ru/dotnet/framework/data/adonet/ef/language-reference/query-expression-syntax-examples-navigating-relationships
          *
-         * По кожному куратору підраховується кількість груп та загальна довжина прізвищ студентів без прогалин         * 
+         * По кожному куратору підраховується кількість груп та загальна довжина прізвищ студентів без пробілів         * 
          * Аналогичный запрос на SQL:
          * 
             SELECT T.NAME_FIO, COUNT(DISTINCT G.GROUP_ID), SUM(LEN(S.SURNAME))
@@ -247,7 +191,7 @@ namespace LabLinqJoin22
          */
 
 
-        public object Task7Example()
+        public object Query6Example()
         {
             return
                 (
@@ -262,17 +206,116 @@ namespace LabLinqJoin22
                 }
                 ).ToList();
 
-        }//Task7Example()
+        }//Query6Example()
 
-          /* TODO 7.1 Приклад групування з виконанням розрахунків за пов'язаними даними
-           *
-           * За кожним куратором підраховується кількість груп та загальна тривалість прізвищ студентів без прогалин         */
+        /* TODO 6.2
+         * Напішіть запит з підзапитом згідно до варіанту завданння
+         */
 
-        public object Task7()
+        public object Query6()
+        {
+            return
+                context.Students.Take(6).ToList();
+        }//Query6()
+
+
+        /* TODO 7.1 Приклад угруповання
+         * 
+        * Запит витягує викладачів, для яких задано посилання на кафедру,
+        * групуючи їх за ПІБ завкафедрою,
+        * група викладачів, завідувачем яких є Соколов, не витягується,
+        * Отримані групи сортуються за ПІБ завкафедрою у зворотному порядку.
+        *
+        * Зверніть увагу, що пов'язані дані треба підвантажувати до угруповання.
+        * Для цього використовуються методи Include() та ThenInclude().
+        *
+        * Зверніть увагу на метод AsEnumerable(), який змушує програму прочитати дані
+        * EF Core виконує угруповання тільки після завантаження даних
+        *
+        * Також зверніть увагу, що інструкція where використовується двічі: до угруповання та після         */
+
+        public IOrderedEnumerable<IGrouping<string, Models.Tutor>> Query7Example()
+        {
+            return
+
+                from tut in context.Tutors.Include(t => t.Chair).ThenInclude(c => c.ChairHead).AsEnumerable() // подгружаем преподов, кафедры и заведующих
+                where tut.Chair != null                             // проверяем наличие ссылки на кафедру, фильтруя исхожные данные
+                group tut by tut.Chair.ChairHead.NameFio into gr    // собственно группировка
+                where !gr.Key.Contains("Соколов")                   // фильтрация после группировки
+                orderby gr.Key descending                           // сортировка групп
+                select gr;
+
+
+            /*
+             * Это старый пример. Он тоже работает
+             * 
+                from tut in context.Tutors.AsEnumerable()  // AsEnumerable() нужно добавлять, т.к. EF Core не будет группировать данные до их чтения
+                where tut.NameFio.Length <= 12   // фильтрация элементов данных
+                group tut by tut.NameFio.Substring(0, 1) into gr
+                where (gr.Key != "М") && (gr.Key != "Ж")        // фильтрация групп
+                orderby gr.Key descending
+                select gr;
+                
+            */
+        }//Query7Example()
+
+        /* TODO 7.2
+         * Допишіть код методу Task7() для отримання даних відповідно до варіанта
+         * Зверніть увагу, що ключ угруповання має тип string
+         * Якщо у вас за завданням ключ числовий - перетворіть на рядок
+         * Це пов'язано з налаштуванням виведення на форму, насправді припустимо будь-який тип даних
+         */
+        public IOrderedEnumerable<IGrouping<string, Models.Student>> Query7()
         {
             return
                 null;
         }//Query7()
+
+        /* TODO 8.1 Ліве зовнішне з'єднання
+         * 
+         * На відміну від SQL, виконання лівих зовнішніх з'єднаннь в LINQ
+         * істотно відрізняється від внутришніх з'єднань.
+         * Подробиці див. в документації:
+         * https://learn.microsoft.com/ru-ru/dotnet/csharp/linq/perform-left-outer-joins
+         * 
+         * Приклад:
+         * Вибрати всіх викладачів, вказавши прізвище, номер кафедри (якщо є) та назви предметів, 
+         * які вони ведуть (якщо є), відсортувати за прізвищем викладача у зворотньому порядку 
+         */
+
+        public object Query8Example()
+        {
+            return
+            (
+            from t in context.Tutors
+            join ch in context.Chairs on t.Chair equals ch into tutOnCh
+            from tch in tutOnCh.DefaultIfEmpty()
+            join cur in context.Curricula on t equals cur.Tutor into tutOnCur
+            from tcur in tutOnCur.DefaultIfEmpty()
+            join sub in context.Subjects on tcur.Subject equals sub into tutOnSub
+            from tsub in tutOnSub.DefaultIfEmpty()
+            orderby t.NameFio descending
+            select new
+            {
+                FIO = t.NameFio,
+                ChairNum = tch.ChairNumber ?? String.Empty,
+                Subject = tsub.Name ?? String.Empty
+            }
+            ).ToList();
+        }//Query8Example()
+
+
+        /* TODO 8.2 
+         * Напішіть запит зовнішнім з'єднанням згідно до варіанту завданння
+         */
+
+        public object Query8()
+        {
+            return
+                context.Students.Take(8).ToList();
+        }//Query8()
+
+
 
 
     }//class DataAccess}
